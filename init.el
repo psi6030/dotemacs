@@ -8,6 +8,7 @@
 
 ;; Add in your own as you wish:
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings starter-kit-js
+                                  slime slime-repl
                       php-mode
                       clojure-mode clojure-test-mode)
   "A list of packages to ensure are installed at launch.")
@@ -16,17 +17,29 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
-(mouse-avoidance-mode 'jump)
+(mouse-avoidance-mode 'exile)
 (delete-selection-mode 1)
 
+(setq inferior-lisp-program "/usr/bin/clisp")
+(add-to-list 'load-path "~/.emacs.d/managed-packages/slime-from-cvs/slime")  ; SLIME from CVS directory
+(require 'slime)
+(slime-setup)
 
-(set-default-font "-unknown-Ubuntu Mono-normal-normal-normal-*-17-*-*-*-m-0-iso10646-1")
+;; (defun slime-common-lisp ()
+;;   (interactive)
+;;   (setq inferior-lisp-program "/usr/bin/clisp") ; Common Lisp impl
+;;   (require 'slime)
+;;   (slime-setup '(slime-repl))
+;;   (slime))
+
+
 ;;(set-default-font "-*-Courier New-normal-r-*-*-12-112-96-96-c-*-iso8859-1")
 
 ;;(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
-(global-set-key "\M-=" 'goto-line)
+
+(global-set-key [f5] 'call-last-kbd-macro)
 
 (set-frame-position (selected-frame) 0 0) 
 
@@ -51,3 +64,5 @@
 (add-hook 'c-mode-hook 'rt-do-line-comments)
 
 (remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
+
+(set-default-font "-unknown-Ubuntu Mono-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1")
