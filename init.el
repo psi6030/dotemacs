@@ -10,7 +10,8 @@
 (defvar my-packages '(starter-kit starter-kit-lisp starter-kit-bindings starter-kit-js
                                   slime slime-repl
                       php-mode
-                      clojure-mode clojure-test-mode)
+                      clojure-mode clojure-test-mode
+                      exapnd-region)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -38,6 +39,9 @@
 ;;(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 (add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
+
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
 
 (global-set-key [f5] 'call-last-kbd-macro)
 
