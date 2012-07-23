@@ -17,6 +17,8 @@
 (mouse-avoidance-mode 'exile)
 (delete-selection-mode 1)
 
+(set-face-foreground 'minibuffer-prompt "white")
+
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
